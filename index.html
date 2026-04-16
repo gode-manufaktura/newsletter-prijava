@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Newsletter Prijava</title>
+    <style>
+        /* Službeni, sitni fontovi */
+        .pravni-tekst, .copyright-text, .poduzeca-lista, .klasa-broj, .podrska-tekst {
+            font-size: 11px;
+            color: gray;
+            font-family: sans-serif;
+            line-height: 1.4;
+        }
+
+        /* Gornji desni kut - Klasifikacija */
+        .klasa-broj {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            text-align: right;
+            font-family: monospace; /* Izgleda kao da je iz pisaće mašine */
+        }
+
+        /* LIJEVI donji kut - Pravna dokumentacija */
+        .pravni-kontejner {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            max-width: 450px;
+        }
+
+        .poduzeca-lista {
+            margin-top: 10px;
+            border-top: 1px solid #ccc;
+            padding-top: 5px;
+            font-style: italic;
+        }
+
+        .podrska-tekst {
+            margin-top: 5px;
+            font-size: 10px;
+            color: #999;
+        }
+
+        /* DESNI donji kut - Logo i Copyright */
+        .footer-container {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            text-align: right;
+        }
+
+        .logo-box {
+            border: 2px solid black; 
+            display: inline-block;
+            line-height: 0; 
+        }
+
+        .logo-box img {
+            width: 450px; 
+            height: auto;
+            display: block;
+        }
+
+        .copyright-text {
+            margin-top: 8px;
+            display: block;
+        }
+
+        body {
+            padding: 60px 40px; /* Malo više prostora zbog klase gore */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="klasa-broj">
+        KLASA: 011-02/26-01/48<br>
+        URBROJ: 2181-125-01-26-2
+    </div>
+
+    <h3>Prijava na službeni Vanjaka newsletter</h3>
+
+    <form action="https://script.google.com/macros/s/AKfycbxqSXBkA1h4BK2naHJs8JCRv3pyJl79Ta9uwMsezVXNnOJaxqEnYU_p0rLJfAE5rANQ/exec" method="POST">
+        
+        <label>E-mail adresa:</label>
+        <input type="text" name="tekstUnos" placeholder="vaš@mail.hr" required>
+        
+        <input type="submit" value="Prijavi me">
+
+    </form>
+
+    <div class="pravni-kontejner">
+        <p class="pravni-tekst">
+            Prijavom i upisivanjem Vaše e-mail adrese prihvaćate primati sve newslettere, vijesti i ponude svih poduzeća pod vlasništvom Vanjaka grupe.
+        </p>
+        <div class="poduzeca-lista">
+            Članice grupe: Vanjaka d.o.o., Vanjaka Foto Lab d.o.o., Obrt za izradu i popravke vune i tkanine Gode Manufaktura d.o.o., JOMA robne kuće d.o.o. - u stečaju.
+        </div>
+        <div class="podrska-tekst">
+            Kontakt za upite o privatnosti: info-pravna@vanjaka-grupa.hr (pon-pet 09:00 - 11:00h)
+        </div>
+    </div>
+
+    <div class="footer-container">
+        <div class="logo-box">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <span class="copyright-text">
+            © Copyright Vanjaka Grupa d.d.
+        </span>
+    </div>
+
+</body>
+</html>
