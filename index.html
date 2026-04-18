@@ -16,6 +16,7 @@
             font-family: "SF Pro Display", "-apple-system", sans-serif;
             -webkit-font-smoothing: antialiased;
             overflow: hidden;
+            position: relative; /* Važno za apsolutno pozicioniranje */
         }
 
         /* Pozadinski efekti za lomljenje svetlosti kroz staklo */
@@ -28,7 +29,30 @@
             top: 10%; left: 10%;
         }
 
-        /* CENTRALNA KARTICA */
+        /* --- NOVA PLOHA ZA NASLOV (GORNJI LIJEVI KUT) --- */
+        .header-glass-card {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 15px 30px;
+            z-index: 10; /* Osigurava da je na vrhu */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .header-glass-card h3 {
+            font-weight: 200;
+            font-size: 20px; /* Nešto manji font za kut */
+            color: white;
+            letter-spacing: -0.5px;
+            margin: 0; /* Ukloni marginu */
+        }
+
+        /* --- CENTRALNA KARTICA (SADA BEZ NASLOVA) --- */
         .glass-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(50px) saturate(200%);
@@ -40,14 +64,7 @@
             max-width: 480px;
             text-align: center;
             box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-        }
-
-        h3 {
-            font-weight: 200;
-            font-size: 30px;
-            color: white;
-            margin-bottom: 40px;
-            letter-spacing: -1px;
+            margin-top: 40px; /* Malo pomakni dolje da se ne sudara s naslovom na malim ekranima */
         }
 
         /* GLASS INPUT POLJE */
@@ -160,8 +177,11 @@
 
     <div class="klasa-broj">KLASA: 011-02/26-01/48 | URBROJ: 2181-125-01-26-2</div>
 
-    <div class="glass-card">
+    <div class="header-glass-card">
         <h3>Vanjaka Newsletter</h3>
+    </div>
+
+    <div class="glass-card">
         <form action="https://script.google.com/macros/s/AKfycbxqSXBkA1h4BK2naHJs8JCRv3pyJl79Ta9uwMsezVXNnOJaxqEnYU_p0rLJfAE5rANQ/exec" method="POST">
             <input type="text" name="tekstUnos" placeholder="Email adresa" required>
             <input type="submit" value="PRIJAVA">
