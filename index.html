@@ -16,6 +16,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
+            /* Tamni, duboki gradijent za najbolji stakleni kontrast */
             background: radial-gradient(circle at 15% 15%, #444, #000);
             min-height: 100vh;
             display: flex;
@@ -27,6 +28,7 @@
             padding: 20px;
         }
 
+        /* Glavni kontejner za kaskadu */
         .cascade-wrapper {
             position: relative;
             width: 100%;
@@ -37,6 +39,7 @@
             align-items: center;
         }
 
+        /* Osnovni stil za sve staklene ploče */
         .glass {
             background: var(--glass-bg);
             backdrop-filter: var(--glass-blur);
@@ -47,18 +50,18 @@
             position: absolute;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* --- 1. NASLOV (Manja, ali široka ploha) --- */
+        /* --- 1. PLOHA: NASLOV (Gore Lijevo) --- */
         .panel-title {
-            width: 38%;
+            width: 40%;
             height: 25%;
             top: 5%;
             left: 5%;
             z-index: 1;
+            justify-content: center;
+            align-items: center;
         }
 
         .panel-title h3 {
@@ -69,14 +72,16 @@
             text-align: center;
         }
 
-        /* --- 2. CENTRALNA FORMA (Fiksni z-index za gumb) --- */
+        /* --- 2. PLOHA: CENTRALNA FORMA (Uvijek na vrhu) --- */
         .panel-form {
             width: 45%;
             height: 40%;
-            z-index: 10;
-            padding: 50px;
             top: 25%;
             left: 25%;
+            z-index: 10; /* Osigurava da su gumbi uvijek ispred svega */
+            padding: 50px;
+            justify-content: center;
+            align-items: center;
         }
 
         form {
@@ -117,30 +122,32 @@
         input[type="submit"]:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: scale(1.03);
-            box-shadow: 0 0 30px rgba(255,255,255,0.1);
         }
 
-        /* --- 3. POVEĆANI LOGO (Masivna ploha) --- */
+        /* --- 3. PLOHA: LOGO (Dolje Desno - Inteligentno pozicioniranje) --- */
         .panel-logo {
-            width: 50%;  /* Povećano sa 40% na 50% */
-            height: 50%; /* Povećano sa 40% na 50% */
+            width: 55%; 
+            height: 55%; 
             bottom: 5%;
             right: 5%;
             z-index: 2;
-            padding: 40px;
+            padding: 60px; /* Sigurnosna zona */
+            justify-content: flex-end; /* Gura logo desno */
+            align-items: flex-end;    /* Gura logo dolje */
         }
 
         .panel-logo img {
-            width: 100%;    /* Slika sada ispunjava širinu ploče */
-            height: 100%;   /* Slika ispunjava visinu */
-            object-fit: contain; /* Zadržava proporcije logotipa */
+            max-width: 85%; /* Nikad ne dira rubove preklapanja */
+            max-height: 85%;
+            object-fit: contain;
             opacity: 1;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.1));
+            filter: drop-shadow(0 0 25px rgba(255,255,255,0.15));
         }
 
-        /* --- RESPONSIVE ZA MOBITELE --- */
+        /* Responsive za mobitele - slaže plohe jednu ispod druge */
         @media (max-width: 1024px) {
-            .cascade-wrapper { height: auto; flex-direction: column; }
+            body { overflow-y: auto; }
+            .cascade-wrapper { height: auto; flex-direction: column; padding-bottom: 50px; }
             .glass {
                 position: relative;
                 width: 100% !important;
@@ -151,8 +158,10 @@
                 bottom: auto !important;
                 margin-bottom: -30px;
                 padding: 40px;
+                justify-content: center;
+                align-items: center;
             }
-            .panel-logo img { width: 80%; }
+            .panel-logo img { max-width: 90%; }
         }
 
         .legal-box {
@@ -161,7 +170,6 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.3);
             font-weight: 300;
-            letter-spacing: 0.5px;
         }
 
         .klasa-broj {
