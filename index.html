@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vanjaka Grupa | Newsletter</title>
     <style>
+        /* Definiranje varijabli za matematičku dosljednost */
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-blur: blur(40px) saturate(180%);
+            --standard-radius: 35px; /* Dosljedno zaobljene ploče */
+            --pill-radius: 50px; /* Za potpuno zaobljene gumbe/inpute */
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -16,157 +25,144 @@
             font-family: "SF Pro Display", "-apple-system", sans-serif;
             -webkit-font-smoothing: antialiased;
             overflow: hidden;
-            position: relative; /* Važno za apsolutno pozicioniranje */
         }
 
-        /* Pozadinski efekti za lomljenje svetlosti kroz staklo */
         .ambient-light {
             position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0, 113, 227, 0.15), transparent 70%);
-            filter: blur(100px);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.12), transparent 70%);
+            filter: blur(120px);
             z-index: -1;
-            top: 10%; left: 10%;
+            top: 5%; left: 15%;
         }
 
-        /* --- NOVA PLOHA ZA NASLOV (GORNJI LIJEVI KUT) --- */
+        /* --- ZAJEDNIČKI GLASS STIL --- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--standard-radius);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        /* --- GORNJI LIJEVI KUT: VEĆI NASLOV --- */
         .header-glass-card {
             position: fixed;
-            top: 30px;
-            left: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px) saturate(180%);
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 15px 30px;
-            z-index: 10; /* Osigurava da je na vrhu */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            top: 40px;
+            left: 40px;
+            padding: 25px 50px;
         }
 
         .header-glass-card h3 {
             font-weight: 200;
-            font-size: 20px; /* Nešto manji font za kut */
+            font-size: 32px; /* Povećan naslov */
             color: white;
-            letter-spacing: -0.5px;
-            margin: 0; /* Ukloni marginu */
+            letter-spacing: -1px;
+            margin: 0;
         }
 
-        /* --- CENTRALNA KARTICA (SADA BEZ NASLOVA) --- */
+        /* --- CENTRALNA KARTICA --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(50px) saturate(200%);
-            -webkit-backdrop-filter: blur(50px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
             padding: 60px;
             width: 100%;
-            max-width: 480px;
-            text-align: center;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-            margin-top: 40px; /* Malo pomakni dolje da se ne sudara s naslovom na malim ekranima */
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
-        /* GLASS INPUT POLJE */
+        /* POTPUNO ZAOBLJENI INPUT (Pill shape) */
         input[type="text"] {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 18px;
-            padding: 18px;
+            border-radius: var(--pill-radius); /* Potpuno zaobljeno */
+            padding: 20px 30px;
             color: white;
             font-size: 16px;
             font-weight: 300;
             outline: none;
-            margin-bottom: 15px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             text-align: center;
+            transition: all 0.4s ease;
         }
 
         input[type="text"]:focus {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            box-shadow: 0 0 20px rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
-        /* GLASS DUGME (Liquid Glass efekt) */
+        /* POTPUNO ZAOBLJENI GUMB (Pill shape) */
         input[type="submit"] {
             width: 100%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.07);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
-            border-radius: 18px;
+            border-radius: var(--pill-radius); /* Potpuno zaobljeno */
             padding: 18px;
-            font-size: 16px;
-            font-weight: 400;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.4s ease;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         input[type="submit"]:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.02);
         }
 
-        /* DONJI LIJEVI KUT - LEGAL */
+        /* --- DONJI LIJEVI KUT --- */
         .legal-box {
             position: fixed;
-            left: 30px; bottom: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            padding: 15px 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            max-width: 380px;
+            left: 40px; bottom: 40px;
+            padding: 20px 30px;
+            max-width: 400px;
+            border-radius: 25px; /* Nešto manji radijus za manju plohu */
         }
 
         .pravni-tekst, .poduzeca-lista {
-            font-size: 10px;
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.4);
             font-weight: 300;
             line-height: 1.6;
         }
 
-        /* DONJI DESNI KUT - LOGO */
+        /* --- DONJI DESNI KUT: LOGOTIP --- */
         .footer-container {
             position: fixed;
-            right: 30px; bottom: 30px;
+            right: 40px; bottom: 40px;
             text-align: right;
         }
 
         .logo-glass {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            padding: 25px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 45px;
             display: inline-block;
         }
 
         .logo-glass img {
             width: 380px;
-            opacity: 0.9;
+            opacity: 0.85;
+            display: block;
         }
 
         .copyright-text {
             display: block;
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 10px;
             color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
         }
 
         .klasa-broj {
             position: fixed;
-            top: 30px; right: 30px;
+            top: 40px; right: 40px;
             font-size: 9px;
-            color: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.1);
             font-family: monospace;
         }
     </style>
@@ -177,18 +173,18 @@
 
     <div class="klasa-broj">KLASA: 011-02/26-01/48 | URBROJ: 2181-125-01-26-2</div>
 
-    <div class="header-glass-card">
+    <div class="header-glass-card glass">
         <h3>Vanjaka Newsletter</h3>
     </div>
 
-    <div class="glass-card">
-        <form action="https://script.google.com/macros/s/AKfycbxqSXBkA1h4BK2naHJs8JCRv3pyJl79Ta9uwMsezVXNnOJaxqEnYU_p0rLJfAE5rANQ/exec" method="POST">
+    <div class="glass-card glass">
+        <form action="https://script.google.com/macros/s/AKfycbxqSXBkA1h4BK2naHJs8JCRv3pyJl79Ta9uwMsezVXNnOJaxqEnYU_p0rLJfAE5rANQ/exec" method="POST" style="display: contents;">
             <input type="text" name="tekstUnos" placeholder="Email adresa" required>
             <input type="submit" value="PRIJAVA">
         </form>
     </div>
 
-    <div class="legal-box">
+    <div class="legal-box glass">
         <p class="pravni-tekst">Prijavom prihvaćate distribuciju informacija unutar Vanjaka Grupe.</p>
         <div class="poduzeca-lista">
             Vanjaka d.o.o. • Foto Lab • Gode Manufaktura • JOMA (stečaj)
@@ -196,7 +192,7 @@
     </div>
 
     <div class="footer-container">
-        <div class="logo-glass">
+        <div class="logo-glass glass">
             <img src="logo.png" alt="Logo">
         </div>
         <span class="copyright-text">© 2026 VANJAKA GRUPA D.D.</span>
